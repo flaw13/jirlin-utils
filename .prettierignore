@@ -1,0 +1,11 @@
+
+# Ignore artifacts:
+build
+coverage
+input
+output
+node_modules
+referenceFiles
+
+# Ignore all HTML files:
+*.html
