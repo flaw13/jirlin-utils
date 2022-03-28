@@ -1,0 +1,10 @@
+{
+  "name": "jirlin-utils",
+  "version": "1.0.0",
+  "description": "Utilities for Jira anayltics",
+  "main": "index.js",
+  "repository": "git@github.com:flaw13/jirlin-utils.git",
+  "author": "Frank Law <frank.law@dutchie.com>",
+  "license": "MIT",
+  "private": false
+}
