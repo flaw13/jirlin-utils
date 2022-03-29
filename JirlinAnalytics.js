@@ -1,8 +1,8 @@
-
 const fs = require("fs");
 const path = require("path");
 const csv = require("fast-csv");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const jiraConstants = require("./src/constants");
 
 /***** Constants *****/
 let csvWriter = undefined;
@@ -17,15 +17,17 @@ console.log("Welcome Jirlin! ");
 console.log("************* Start Parse ************");
 
 fs.createReadStream(path.resolve(__dirname, inputDirectory, inputFileName))
-    .pipe(csv.parse({ headers: true }))
-    .on("headers", (headers) => {
-        //console.log(headers)
-    })
-    .on("data", (row) => {
-        console.log(row);
-    })
-    .on("error", (error) => console.error(error))
-    .on("end", (rowCount) => {console.log("Row Count:" + rowCount)});
+  .pipe(csv.parse({ headers: true }))
+  .on("headers", (headers) => {
+    console.log(headers);
+  })
+  .on("data", (row) => {
+    //console.log(row);
+  })
+  .on("error", (error) => console.error(error))
+  .on("end", (rowCount) => {
+    console.log("Row Count:" + rowCount);
+  });
 
 /*
 const cleanUpADO = require("./src/CleanUpADOSteps");
