@@ -3,6 +3,7 @@ const path = require("path");
 const csv = require("fast-csv");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const jiraConstants = require("./src/constants");
+const collectAnalytics = require("./src/collectAnalytics");
 
 /***** Constants *****/
 let csvWriter = undefined;
@@ -22,10 +23,11 @@ fs.createReadStream(path.resolve(__dirname, inputDirectory, inputFileName))
     console.log(headers);
   })
   .on("data", (row) => {
-    //console.log(row);
+    collectAnalytics.addIssueData(row);
   })
   .on("error", (error) => console.error(error))
   .on("end", (rowCount) => {
+    collectAnalytics.printResults();
     console.log("Row Count:" + rowCount);
   });
 
