@@ -15,12 +15,11 @@ const outputDirectory = "output";
 const inputFileName = "Global_Sprint_2022.06_All_Issues.csv";
 
 console.log("Welcome Jirlin! ");
-console.log("************* Start Parse ************");
 
 fs.createReadStream(path.resolve(__dirname, inputDirectory, inputFileName))
   .pipe(csv.parse({ headers: true }))
   .on("headers", (headers) => {
-    console.log(headers);
+    //console.log(headers);
   })
   .on("data", (row) => {
     collectAnalytics.addIssueData(row);
@@ -28,7 +27,7 @@ fs.createReadStream(path.resolve(__dirname, inputDirectory, inputFileName))
   .on("error", (error) => console.error(error))
   .on("end", (rowCount) => {
     collectAnalytics.printResults();
-    console.log("Row Count:" + rowCount);
+    //console.log("Row Count:" + rowCount);
   });
 
 /*
