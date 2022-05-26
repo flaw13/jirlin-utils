@@ -14,7 +14,7 @@ function addIssueData(issue) {
   //console.log(issue);
   // setup value array if first time through charter
   if (!resultsMap.has(issue[PRODUCT_CHARTER])) {
-    resultsMap.set(issue[PRODUCT_CHARTER], [0, 0]);
+    resultsMap.set(issue[PRODUCT_CHARTER], [0, 0, 0]);
   }
   if (issue[ISSUE_TYPE] !== ISSUE_TYPE_QA_TASK) {
     let valuesArray = resultsMap.get(issue[PRODUCT_CHARTER]);
@@ -24,9 +24,12 @@ function addIssueData(issue) {
     let updatedCompleted =
       valuesArray[1] +
       (jiraConstants.isResolved(issue[STATUS]) ? storyPoints : 0);
+    let percentageCompleted =
+      Math.round((valuesArray[1] / valuesArray[0]) * 100) + "%";
     resultsMap.set(issue[PRODUCT_CHARTER], [
       updatedCommitted,
       updatedCompleted,
+      percentageCompleted,
     ]);
   }
 }

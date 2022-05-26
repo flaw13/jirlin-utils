@@ -14,6 +14,8 @@ const CUSTOMER_TIER = "Customer Tier";
 const STORY_POINTS = "Story Points (Low-level Estimating)";
 const CREATED = "Created";
 const ESCALATED = "Escalated to Engineering?";
+const SPRINT = "Sprint";
+const RESOLUTION = "Resolution";
 const HEADERS = [
   SUMMARY,
   ISSUE_TYPE,
@@ -31,11 +33,17 @@ const HEADERS = [
   STORY_POINTS,
   CREATED,
   ESCALATED,
+  SPRINT,
+  RESOLUTION,
 ];
 
 const STATUS_DONE = "Done";
 const STATUS_CLOSED = "Closed";
 const STATUS_BACKLOG = "Backlog";
+const STATUS_ON_DECK = "On Deck";
+const STATUS_READY_FOR_DEVELOPMENT = "Ready for Development";
+const STATUS_TESTED = "Tested";
+const STATUS_IN_TESTING = "In Testing";
 
 const PRIORITY_P0 = "P0";
 const PRIORITY_P1 = "P1";
@@ -44,9 +52,21 @@ const PRIORITY_P3 = "P3";
 
 const ISSUE_TYPE_BUG = "Bug";
 const ISSUE_TYPE_QA_TASK = "QA Task";
+const ISSUE_TYPE_EPIC = "Epic";
 
 function isResolved(status) {
   return status === STATUS_DONE || status === STATUS_CLOSED;
+}
+
+function isWIP(status) {
+  return (
+    status !== STATUS_DONE &&
+    status !== STATUS_CLOSED &&
+    status !== STATUS_BACKLOG &&
+    status !== STATUS_ON_DECK &&
+    status !== STATUS_READY_FOR_DEVELOPMENT &&
+    status !== STATUS_TESTED
+  );
 }
 
 module.exports = {
@@ -75,5 +95,7 @@ module.exports = {
   PRIORITY_P3,
   ISSUE_TYPE_BUG,
   ISSUE_TYPE_QA_TASK,
+  ISSUE_TYPE_EPIC,
   isResolved,
+  isWIP,
 };
